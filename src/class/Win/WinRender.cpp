@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   WinRender.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
+/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 23:28:38 by justinmorne       #+#    #+#             */
-/*   Updated: 2023/04/20 21:28:48 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/24 20:06:33 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/Win.hpp"
+#include "../../../include/Win.hpp"
 
 void Win::drawPixel(u_int32_t y, u_int32_t x, u_int32_t color)
 {

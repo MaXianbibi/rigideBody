@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Win.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
+/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:52:58 by justinmorne       #+#    #+#             */
-/*   Updated: 2023/04/20 21:33:01 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/24 20:06:02 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/Win.hpp"
+#include "../../../include/Win.hpp"
 
 Win::Win(u_int16_t _w, u_int16_t _h, std::string name) : w(_w), h(_h)
 {

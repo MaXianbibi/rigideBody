@@ -3,30 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
+/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:48:56 by justinmorne       #+#    #+#             */
-/*   Updated: 2023/04/20 21:32:49 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/24 21:21:37 by jmorneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Win.hpp"
+#include "../include/Scene.hpp"
+
 
 int doingnothing(Win &win, void *ptr)
 {
+	Point &i = *static_cast<Point *>(ptr);
 
-    (void)ptr;
-    win.clear_color_buffer(0);
-    win.draw_grid();
-    win.drawRecrangle(200, 200, 100, 100, 0xff);
+	win.clear_color_buffer(0);
+	win.drawRecrangle(i.Cord.x, i.Cord.y, 10, 10, 0xff0000);
+	// std::cout << i.Cord << std::endl;
+
+	i.Cord.x++;
+	i.Cord.y++;
+	// i.update();
     return (1);    
 }
 
 int main ( void )
 {
-    Win win(720, 480, "BSDL");
+    Win win(600, 600, "RigidBody");
+
+	Point i;
     
+	// win.change_frame_rate(60 / 1000);
     win.updateFunc = doingnothing;
-    win.loop(&win);
-    
+    win.loop(&i);
 }

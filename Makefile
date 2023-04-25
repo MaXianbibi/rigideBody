@@ -1,7 +1,7 @@
-NAME = BSDL
+NAME = softBody
 CC = g++ -std=c++17
 CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -Llib/SDL/lib -lSDL2 -lm
+LDFLAGS = -Llib/SDL/lib -lSDL2 -lm -Llib/mathLib -lmathLib
 RM = rm -f
 
 SRC_DIR = src/
