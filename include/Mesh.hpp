@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Scene.hpp                                          :+:      :+:    :+:   */
+/*   mesh.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/23 18:01:23 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/25 16:45:16 by justinmorne      ###   ########.fr       */
+/*   Created: 2023/04/25 15:16:24 by justinmorne       #+#    #+#             */
+/*   Updated: 2023/04/25 16:35:30 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_HPP
-# define SCENE_HPP
+#ifndef MESH_HPP
+# define MESH_HPP
 
-#include <vector>
-
-#include "../lib/mathLib/include/mathLib.hpp"
 #include "Point.hpp"
-#include <vector>
-#include "Mesh.hpp"
+#include "Win.hpp"
 
-class Mesh;
+class Win;
 
-class Scene
+class Mesh
 {
 private:
-	std::vector<Mesh> Meshs;
-	Win &win;
 public:
-	bool runSimulation;
-	Scene(Win &_win);
-	~Scene();
-	void addMesh(Mesh &mesh);
-	void drawScene(void);
-	void startSimulation(void);
+    Mesh();
+    ~Mesh();
 
-	void sceneEvent(void);
+    Point *head;
+    void addPoint(u_int32_t x, u_int32_t y);
+    void drawMesh(Win &win);
+    void updateMesh(void);
 };
-
 
 
 

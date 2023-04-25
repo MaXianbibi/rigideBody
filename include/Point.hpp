@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:37:51 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/24 21:15:50 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:34:12 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ private:
 	vector2df Velocity;
 	vector2df Force;
 public:
+	Point	*next;
 	vector2df Cord;
 	Point();
 	Point(int32_t x, int32_t y);

@@ -3,38 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:48:56 by justinmorne       #+#    #+#             */
-/*   Updated: 2023/04/24 21:21:37 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:05:32 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Win.hpp"
 #include "../include/Scene.hpp"
 
-
-int doingnothing(Win &win, void *ptr)
+int update(Win &win, void *ptr)
 {
-	Point &i = *static_cast<Point *>(ptr);
-
+	Scene &i = *static_cast<Scene *>(ptr);
+	(void)win;
+	(void)i;
 	win.clear_color_buffer(0);
-	win.drawRecrangle(i.Cord.x, i.Cord.y, 10, 10, 0xff0000);
-	// std::cout << i.Cord << std::endl;
+	i.drawScene();
+	i.startSimulation();
 
-	i.Cord.x++;
-	i.Cord.y++;
-	// i.update();
-    return (1);    
+	return (1);
 }
 
-int main ( void )
+void setupScene(Scene &scene, Win &win)
 {
-    Win win(600, 600, "RigidBody");
+	Mesh tmp;
 
-	Point i;
-    
-	// win.change_frame_rate(60 / 1000);
-    win.updateFunc = doingnothing;
-    win.loop(&i);
+	scene.addMesh(tmp);
+	while (!scene.runSimulation && win.is_running)
+	{	
+		win.clear_color_buffer(0);
+		scene.drawScene();
+		win.render();
+
+		scene.sceneEvent();
+		SDL_Delay(1000 / 60);
+	}
+}
+
+int main(void)
+{
+	Win win(600, 600, "RigidBody");
+
+	Scene scene(win);
+
+	setupScene(scene, win);
+
+	win.updateFunc = update;
+	win.loop(&scene);
 }
