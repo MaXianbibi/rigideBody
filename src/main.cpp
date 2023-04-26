@@ -6,7 +6,7 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:48:56 by justinmorne       #+#    #+#             */
-/*   Updated: 2023/04/25 17:05:32 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/25 17:39:53 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void setupScene(Scene &scene, Win &win)
 
 int main(void)
 {
-	Win win(600, 600, "RigidBody");
+	Win win(600, 600, "SoftBody");
 
 	Scene scene(win);
 

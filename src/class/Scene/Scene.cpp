@@ -6,7 +6,7 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 18:02:38 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/25 17:07:10 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/25 20:35:32 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,18 @@ Scene::~Scene()
     for (auto &element : this->Meshs)
     {
         Point *tmp = element.head;
-        while (tmp)
+
+        if (tmp)
         {
-            element.head = tmp->next;
-            delete tmp;
-            tmp = element.head;
+            Point *start = tmp;
+            do
+            {
+                Point *next = tmp->next;
+                delete tmp;
+                tmp = next;
+            } while (tmp != start);
         }
+        element.head = nullptr;
     }
 }
 
@@ -47,20 +53,22 @@ void Scene::startSimulation(void)
 {
     for (auto &element : this->Meshs)
         element.updateMesh();
-
 }
 
-void Scene::sceneEvent(void) {
+void Scene::sceneEvent(void)
+{
     SDL_Event event;
 
     SDL_PollEvent(&event);
-    switch (event.type) {
+    switch (event.type)
+    {
     case SDL_QUIT:
         this->win.is_running = 0;
         break;
     case SDL_KEYDOWN:
     {
-        switch (event.key.keysym.sym) {
+        switch (event.key.keysym.sym)
+        {
         case SDLK_ESCAPE:
             this->win.is_running = 0;
             break;
@@ -69,13 +77,14 @@ void Scene::sceneEvent(void) {
         }
     }
     break;
-    case SDL_MOUSEBUTTONDOWN: 
+    case SDL_MOUSEBUTTONDOWN:
     {
         if (event.button.button == SDL_BUTTON_LEFT)
         {
             int x, y;
-            SDL_GetMouseState(&x, &y); 
-            this->Meshs[0].addPoint(x, y);
+            SDL_GetMouseState(&x, &y);
+            if (this->Meshs[this->Meshs.size() - 1].addPoint(x, y))
+                this->Meshs.emplace_back(); 
         }
     }
     break;

@@ -1,4 +1,2 @@
-# Softbody
-Softbody in 2d
-from scrath with put pixel only
-c++
+# rigideBody
+rigideBody2d

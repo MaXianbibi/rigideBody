@@ -6,7 +6,7 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:51:35 by justinmorne       #+#    #+#             */
-/*   Updated: 2023/04/25 17:00:05 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/25 17:33:15 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ private:
     u_int16_t       w;
     u_int16_t       h;
     u_int8_t        FRAME_RATE;
-    void            (Win::*defaultEventFunction)(void);
-    void            defaultEvent(void);
 public:
     void            render(void);
     bool            is_running;
+    void            defaultEvent(void);
+    void            (Win::*defaultEventFunction)(void);
     Win();
     Win(u_int16_t _w, u_int16_t _h, std::string name);
     ~Win();

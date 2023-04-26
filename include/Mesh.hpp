@@ -6,7 +6,7 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:16:24 by justinmorne       #+#    #+#             */
-/*   Updated: 2023/04/25 16:35:30 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/25 20:27:21 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ public:
     ~Mesh();
 
     Point *head;
-    void addPoint(u_int32_t x, u_int32_t y);
+    int  addPoint(int32_t x, int32_t y);
     void drawMesh(Win &win);
     void updateMesh(void);
 };
