@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector2df.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:02:37 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/24 21:02:51 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:33:46 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ vector2df &vector2df::operator=(const vector2df& other)
 	return (*this);
 }
 
-vector2df::vector2df(vector2df &cpy)
+vector2df::vector2df(const vector2df &cpy)
 {
 	*this = cpy;
 }

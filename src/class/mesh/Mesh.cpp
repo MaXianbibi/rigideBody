@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mesh.cpp                                           :+:      :+:    :+:   */
+/*   Mesh.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:16:55 by justinmorne       #+#    #+#             */
-/*   Updated: 2023/04/25 20:32:42 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/25 22:19:38 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 Mesh::Mesh()
 {
     head = nullptr;
+    shapeComplete = 1;
 }
 
-Mesh::~Mesh()
-{
-}
+Mesh::~Mesh() {}
 
 int Mesh::addPoint(int32_t x, int32_t y)
 {
@@ -28,6 +27,7 @@ int Mesh::addPoint(int32_t x, int32_t y)
     if (!head)
     {
         head = new Point(x, y);
+        shapeComplete = 0;
         return (0);
     }
     while (tmp->next)
@@ -36,10 +36,11 @@ int Mesh::addPoint(int32_t x, int32_t y)
         tmp->next = new Point(x, y);
     else
     {
-        tmp->next = head; 
+        tmp->next = head;
+        this->shapeComplete = 1;
         return (1);
     }
-    return (0);  
+    return (0);
 }
 
 void Mesh::drawMesh(Win &win)
@@ -47,7 +48,7 @@ void Mesh::drawMesh(Win &win)
     Point *tmp = head;
 
     if (!tmp)
-        return ;
+        return;
     do
     {
         win.drawRecrangle(tmp->Cord.x - 2, tmp->Cord.y - 2, 5, 5, 0xffffff);
@@ -62,10 +63,60 @@ void Mesh::updateMesh(void)
     Point *tmp = head;
 
     if (!tmp)
-        return ;
+        return;
     do
     {
         tmp->update();
         tmp = tmp->next;
     } while (tmp != head);
+}
+
+void Mesh::creatCollision(void)
+{
+    int x, max_x, y, max_y;
+    Point *tmp = head;
+
+    if (!tmp)
+        return;
+        
+    x = tmp->Cord.x;
+    max_x = tmp->Cord.x;
+    y = tmp->Cord.y;
+    max_y = tmp->Cord.y;
+    
+    do
+    {
+        if (tmp->Cord.x < x)
+            x = tmp->Cord.x;
+        if (tmp->Cord.y < y)
+            y = tmp->Cord.y;
+            
+        if (tmp->Cord.x > max_x)
+            max_x = tmp->Cord.x;
+            
+        if (tmp->Cord.y > max_y)
+            max_y = tmp->Cord.y;
+        tmp = tmp->next;
+    } while (tmp != head);
+
+    this->Collision.first.x = x;
+    this->Collision.first.y = y;
+
+    this->Collision.second.x = max_x;
+    this->Collision.second.y = max_y;
+}
+
+int		Mesh::checkCircle(void)
+{
+    Point *tmp = head;
+
+    if (!tmp)
+        return (1);
+    do
+    {
+        tmp = tmp->next;
+        if (tmp == nullptr)
+            return (0);
+    } while (tmp != head);
+    return (1);
 }

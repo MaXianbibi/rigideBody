@@ -6,7 +6,7 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 18:02:38 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/25 20:35:32 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/25 22:19:20 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 Scene::Scene(Win &_win) : win(_win)
 {
     runSimulation = 0;
-    Meshs.clear();
 }
 
 Scene::~Scene()
@@ -73,7 +72,15 @@ void Scene::sceneEvent(void)
             this->win.is_running = 0;
             break;
         case SDLK_SPACE:
-            this->runSimulation = 1;
+        {
+            if (this->Meshs.back().shapeComplete )
+            {
+                std::cout << "animation ! " << std::endl;   
+                this->runSimulation = 1;
+            }
+            else
+                std::cerr << "you need 2 finish ur shape mf" << std::endl;
+        }
         }
     }
     break;
@@ -83,10 +90,28 @@ void Scene::sceneEvent(void)
         {
             int x, y;
             SDL_GetMouseState(&x, &y);
-            if (this->Meshs[this->Meshs.size() - 1].addPoint(x, y))
+            if (this->Meshs.back().addPoint(x, y))
+            {
+                this->Meshs.back().creatCollision();                
                 this->Meshs.emplace_back(); 
+            }
         }
     }
     break;
     }
 }
+
+void 	Scene::drawCollisionBox(void)
+{
+    for (auto &element : this->Meshs)
+    {
+        if (element.shapeComplete)
+        {
+                win.drawLine(element.Collision.first.x, element.Collision.second.x, element.Collision.first.y, element.Collision.first.y);
+                win.drawLine(element.Collision.first.x, element.Collision.second.x, element.Collision.second.y, element.Collision.second.y);
+                win.drawLine(element.Collision.first.x, element.Collision.first.x, element.Collision.first.y, element.Collision.second.y);
+                win.drawLine(element.Collision.second.x, element.Collision.second.x, element.Collision.first.y, element.Collision.second.y);
+        }
+    }
+}
+

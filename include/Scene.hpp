@@ -6,7 +6,7 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 18:01:23 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/25 16:45:16 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/25 21:56:30 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ public:
 	void drawScene(void);
 	void startSimulation(void);
 
-	void sceneEvent(void);
+	void 	sceneEvent(void);
+
+	void 	drawCollisionBox(void);
 };
 
 

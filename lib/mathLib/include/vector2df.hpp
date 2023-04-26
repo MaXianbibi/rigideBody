@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector2df.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:01:01 by jmorneau          #+#    #+#             */
-/*   Updated: 2023/04/24 21:02:34 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/25 21:33:32 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	vector2df();
 	~vector2df();
 	vector2df(double _x, double _y);
-	vector2df(vector2df &cpy);
+	vector2df(const vector2df &cpy);
 
 	vector2df &operator=(const vector2df& cpy);
 	vector2df operator+(const vector2df& other) const;
