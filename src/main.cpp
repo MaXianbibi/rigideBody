@@ -6,7 +6,7 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:48:56 by justinmorne       #+#    #+#             */
-/*   Updated: 2023/04/25 22:04:39 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/27 18:36:46 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void setupScene(Scene &scene, Win &win)
 		win.clear_color_buffer(0);
 		scene.drawScene();
 		scene.drawCollisionBox();
+		scene.drawClosetWall();
 		win.render();
 
 		scene.sceneEvent();

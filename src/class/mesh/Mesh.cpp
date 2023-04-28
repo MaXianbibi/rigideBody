@@ -6,11 +6,13 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 15:16:55 by justinmorne       #+#    #+#             */
-/*   Updated: 2023/04/25 22:19:38 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/27 20:56:11 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/Mesh.hpp"
+
+const double eps = 1e-9;
 
 Mesh::Mesh()
 {
@@ -53,7 +55,7 @@ void Mesh::drawMesh(Win &win)
     {
         win.drawRecrangle(tmp->Cord.x - 2, tmp->Cord.y - 2, 5, 5, 0xffffff);
         if (tmp->next)
-            win.drawLine(tmp->Cord.x, tmp->next->Cord.x, tmp->Cord.y, tmp->next->Cord.y);
+            win.drawLine(tmp->Cord.x, tmp->next->Cord.x, tmp->Cord.y, tmp->next->Cord.y, 0xffffff);
         tmp = tmp->next;
     } while (tmp && tmp != head);
 }
@@ -119,4 +121,38 @@ int		Mesh::checkCircle(void)
             return (0);
     } while (tmp != head);
     return (1);
+}
+
+bool intersect(vector2df a, vector2df b, vector2df p)
+{
+    if (std::fabs(b.y - a.y) < eps) {
+        return false;
+    }
+
+    if (p.y < std::min(a.y, b.y) || p.y > std::max(a.y, b.y)) {
+        return false;
+    }
+
+    double x = a.x + (p.y - a.y) * (b.x - a.x) / (b.y - a.y);
+    if (x > p.x + eps) {
+        return false;
+    }
+    return true;
+}
+
+bool    Mesh::checkIntersec(vector2df &point)
+{
+    Point *tmp = head;
+    int count = 0;
+    
+    if (!tmp)
+        return (0);
+    do
+    {
+        count += intersect(tmp->Cord, tmp->next->Cord, point);
+        tmp = tmp->next;
+    } while (tmp != head);
+        
+    return (count & 1);
+    
 }

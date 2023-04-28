@@ -6,7 +6,7 @@
 /*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 21:51:35 by justinmorne       #+#    #+#             */
-/*   Updated: 2023/04/25 17:33:15 by justinmorne      ###   ########.fr       */
+/*   Updated: 2023/04/27 20:54:49 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ public:
     void           clear_color_buffer(u_int32_t color);
     void           draw_grid(void);
     void           drawRecrangle(u_int32_t posX, u_int32_t posY, u_int32_t w, u_int32_t h, u_int32_t color);
-    void           drawLine(int32_t start_x, int32_t finish_x, int32_t start_y, int32_t finish_y);
+    void           drawLine(int32_t start_x, int32_t finish_x, int32_t start_y, int32_t finish_y, u_int32_t color);
 };
 #endif

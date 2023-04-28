@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WinRender.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmorneau <jmorneau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: justinmorneau <justinmorneau@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 23:28:38 by justinmorne       #+#    #+#             */
-/*   Updated: 2023/04/24 20:06:33 by jmorneau         ###   ########.fr       */
+/*   Updated: 2023/04/27 20:55:09 by justinmorne      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void Win::drawRecrangle(u_int32_t posX, u_int32_t posY, u_int32_t w, u_int32_t h
             drawPixel(i + posY, j + posX, color);
 }
 
-void           Win::drawLine(int32_t start_x, int32_t finish_x, int32_t start_y, int32_t finish_y)
+void           Win::drawLine(int32_t start_x, int32_t finish_x, int32_t start_y, int32_t finish_y, u_int32_t color)
 {
         
     int32_t dx = std::abs(finish_x - start_x);
@@ -51,8 +51,6 @@ void           Win::drawLine(int32_t start_x, int32_t finish_x, int32_t start_y,
 
     int32_t err = (dx > dy ? dx : -dy) / 2;
     int32_t e2;
-
-    u_int32_t color = 0xFFFFFFFF; // Vous pouvez modifier la couleur ici
 
     while (true) {
         this->drawPixel(start_y, start_x, color);
